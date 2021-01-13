@@ -1,17 +1,32 @@
 const net = require('net');
+// const fs = require('fs');
 const { IP, PORT } = require('./constants');
 
-const conn = net.createConnection({
-  host: IP,
-  port: PORT
-});
 
-conn.setEncoding('utf8');
+const connect = function () {
+  const conn = net.createConnection({
+    host: IP,
+    port: PORT
+  });
 
-conn.on('connect', () => {
-  conn.write('Hello from client!');
-});
+  // conn.connect();
 
-conn.on('data', (data) => {
-  console.log(data);
-});
+  // console.log(conn);
+
+  conn.setEncoding('utf8');
+
+  conn.on('connect', () => {
+    conn.write('Hello from client!');
+  });
+
+  conn.on('data', (data) => {
+    console.log(data);
+  });
+
+  // socket.connect(PORT, IP, conn.on())
+
+  return conn;
+};
+
+
+module.exports = { connect };

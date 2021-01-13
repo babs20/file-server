@@ -1,7 +1,11 @@
 const net = require('net');
+const fs = require('fs');
 const { PORT } = require('./constants');
 
 const server = net.createServer(); // create server
+
+let readStream = fs.createReadStream('../test.txt');
+console.log(server);
 
 server.listen(PORT, () => { // server listen for connections
   console.log('Server is listening on port 3000');
